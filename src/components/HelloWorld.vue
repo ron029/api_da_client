@@ -63,7 +63,7 @@ export default {
       this.birthDate = this.inputTextBirthDate;
 
       dataSearch.name = this.inputTextname;
-      dataSearch.birthDate = this.inputTextBirthDate;
+      dataSearch.dob = this.inputTextBirthDate;
 
       const configSearch = {
         headers: {
