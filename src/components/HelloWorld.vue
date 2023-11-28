@@ -1,6 +1,15 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>Get Token</h1>
+    <button @click="getToken">Get token</button>
+    <div v-if="data">
+      <h2>Data:</h2>
+      <pre>{{ data }}</pre>
+    </div>
+    <h1>Fetch Data</h1>
+    <input type="text" v-model="inputText" placeholder="Enter data" />
+    <p v-if="displayData">{{ displayData }}</p>
+    <button @click="fetchData">Fetch Data</button>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -31,11 +40,67 @@
 </template>
 
 <script>
+import axios from 'axios';
+
+const dataToken = new URLSearchParams();
+dataToken.append('client_id', '1234-ABDE');
+dataToken.append('scope', 'onlc:read');
+dataToken.append('grant_type', 'clients_credentials');
+dataToken.append('client_secret', 'super_secret_key');
+
+const dataSearch = {
+  name: "",
+  dob: "",
+  nric: ""
+}
+const configToken = {
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+};
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+  data() {
+    return {
+      data: '',
+      inputText: '',
+      displayData: ''
+    }
+  },
+  methods: {
+    getToken() {
+      axios.post('https://my-nodejs-app-iyjd.onrender.com/api/v1/token', dataToken, configToken)
+        .then(response => {
+          this.data = response.data;
+          console.log('Data', this.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    },
+    fetchData() {
+      this.displayData = this.inputText;
+      dataSearch.name = this.inputText;
+      const configSearch = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + this.data.access_token
+        }
+      };
+      axios.post('https://my-nodejs-app-iyjd.onrender.com/api/v1/search', dataSearch, configSearch)
+        .then(response => {
+          this.data = response.data;
+          console.log('Data', this.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    }
+  },
 }
 </script>
 
