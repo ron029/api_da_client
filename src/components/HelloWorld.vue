@@ -70,8 +70,8 @@ export default {
   data() {
     return {
       data: '',
-      inputTextname: '',
-      inputTextBirthDate: ''
+      inputTextname: 'John Doe',
+      inputTextBirthDate: '1990-05-15'
     }
   },
   methods: {
