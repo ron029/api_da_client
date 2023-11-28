@@ -7,8 +7,10 @@
       <pre>{{ data }}</pre>
     </div>
     <h1>Fetch Data</h1>
-    <input type="text" v-model="inputText" placeholder="Enter data" />
-    <p v-if="displayData">{{ displayData }}</p>
+    <input type="text" v-model="inputTextname" placeholder="Enter name" />
+    <input type="text" v-model="inputTextBirthDate" placeholder="Enter date of birth" />
+    <p v-if="name">Name: {{ name }}</p>
+    <p v-if="birthDate">{{ birthDate }}</p>
     <button @click="fetchData">Fetch Data</button>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
@@ -53,6 +55,7 @@ const dataSearch = {
   dob: "",
   nric: ""
 }
+
 const configToken = {
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded'
@@ -67,8 +70,8 @@ export default {
   data() {
     return {
       data: '',
-      inputText: '',
-      displayData: ''
+      inputTextname: '',
+      inputTextBirthDate: ''
     }
   },
   methods: {
@@ -83,8 +86,11 @@ export default {
         });
     },
     fetchData() {
-      this.displayData = this.inputText;
-      dataSearch.name = this.inputText;
+      this.name = this.inputTextname;
+      this.birthDate = this.inputTextBirthDate;
+
+      dataSearch.name = this.inputTextname;
+      dataSearch.birthDate = this.inputTextBirthDate;
       const configSearch = {
         headers: {
           'Content-Type': 'application/json',
