@@ -70,6 +70,8 @@ export default {
   data() {
     return {
       data: '',
+      name: '',
+      birthDate: '',
       inputTextname: 'John Doe',
       inputTextBirthDate: '1990-05-15'
     }
@@ -91,6 +93,7 @@ export default {
 
       dataSearch.name = this.inputTextname;
       dataSearch.birthDate = this.inputTextBirthDate;
+
       const configSearch = {
         headers: {
           'Content-Type': 'application/json',
