@@ -61,7 +61,7 @@ export default {
           console.error('Error fetching data:', error);
         });
     },
-    fetchData() {
+    async fetchData() {
       this.name = this.inputTextname;
       this.birthDate = this.inputTextBirthDate;
 
@@ -74,7 +74,7 @@ export default {
           'Authorization': 'Bearer ' + this.data.access_token
         }
       };
-      axios.post('https://portal.hmi.com.ph/api02/da/search', dataSearch, configSearch)
+      await axios.post('https://portal.hmi.com.ph/api02/da/search', dataSearch, configSearch)
         .then(response => {
           this.data_result = response.data;
           if (this.data_result.length < 0) this.result = 1;
