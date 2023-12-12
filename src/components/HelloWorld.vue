@@ -47,6 +47,7 @@ export default {
       inputTextname: 'John Doe',
       inputTextBirthDate: '1990-05-15',
       data_result: '',
+      result: 0,
     }
   },
   methods: {
