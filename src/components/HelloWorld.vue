@@ -12,6 +12,7 @@
     <p v-if="name">Name: {{ name }}</p>
     <p v-if="birthDate">Birthdate: {{ birthDate }}</p>
     <button @click="fetchData">Fetch Data</button>
+    <p v-if="result">Search Result: {{ data_result }}</p>
   </div>
 </template>
 
@@ -44,12 +45,13 @@ export default {
       name: '',
       birthDate: '',
       inputTextname: 'John Doe',
-      inputTextBirthDate: '1990-05-15'
+      inputTextBirthDate: '1990-05-15',
+      data_result: '',
     }
   },
   methods: {
     getToken() {
-      axios.post('https://my-nodejs-app-iyjd.onrender.com/api/v1/token', dataToken, configToken)
+      axios.post('https://portal.hmi.com.ph/api02/da/token', dataToken, configToken)
         .then(response => {
           this.data = response.data;
           console.log('Data', this.data);
@@ -71,10 +73,10 @@ export default {
           'Authorization': 'Bearer ' + this.data.access_token
         }
       };
-      axios.post('https://my-nodejs-app-iyjd.onrender.com/api/v1/search', dataSearch, configSearch)
+      axios.post('https://portal.hmi.com.ph/api02/da/search', dataSearch, configSearch)
         .then(response => {
-          this.data = response.data;
-          console.log('Data', this.data);
+          this.data_result = response.data;
+          console.log('Data', this.data_result);
         })
         .catch(error => {
           console.error('Error fetching data:', error);
