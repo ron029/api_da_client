@@ -75,8 +75,8 @@ export default {
         }
       };
       await axios.post('https://portal.hmi.com.ph/api02/da/search', dataSearch, configSearch)
-        .then(response => {
-          this.data_result = response.data;
+        .then(async response => {
+          this.data_result = await response.data;
           if (this.data_result.length < 0) this.result = 1;
           console.log('Data', this.data_result);
         })
