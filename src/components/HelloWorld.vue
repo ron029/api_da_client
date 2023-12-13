@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     getToken() {
-      axios.post('https://portal.hmi.com.ph/api02/da/generateToken', dataToken, configToken)
+      axios.post('http://localhost:8888/api/v1/token', dataToken, configToken)
         .then(response => {
           this.data = response.data;
           console.log('Data', this.data);
@@ -74,7 +74,7 @@ export default {
           'Authorization': 'Bearer ' + this.data.access_token
         }
       };
-      await axios.post('https://portal.hmi.com.ph/api02/da/member', dataSearch, configSearch)
+      await axios.post('http://localhost:8888/api/v1/search', dataSearch, configSearch)
         .then(async response => {
           this.data_result = await response.data;
           console.log('data length: ', this.data_result.length)
