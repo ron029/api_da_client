@@ -80,7 +80,7 @@ export default {
       try {
         const axiosInstance = axios.create(configSearch); // Create an instance with custom headers
 
-        const response = await axiosInstance.post('/api03/da/member', dataSearch, configSearch);
+        const response = await axiosInstance.post('/api03/da/member', dataSearch);
         this.data_result = response.data;
 
         console.log('data length: ', this.data_result.length);
