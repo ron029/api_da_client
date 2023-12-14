@@ -30,8 +30,9 @@ const dataSearch = {
   dob: "",
   nric: ""
 }
-
+const baseURL = 'http://localhost:8888';
 const configToken = {
+  baseURL,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
@@ -52,7 +53,7 @@ export default {
   },
   methods: {
     getToken() {
-      axios.post('http://localhost:8888/api/v1/token', dataToken, configToken)
+      axios.post('/api/v1/token', dataToken, configToken)
         .then(response => {
           this.data = response.data;
           console.log('Data', this.data);
@@ -74,7 +75,7 @@ export default {
           'Authorization': 'Bearer ' + this.data.access_token
         }
       };
-      await axios.post('http://localhost:8888/api/v1/search', dataSearch, configSearch)
+      await axios.post('/api/v1/search', dataSearch, configSearch)
         .then(async response => {
           this.data_result = await response.data;
           console.log('data length: ', this.data_result.length)
