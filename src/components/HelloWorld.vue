@@ -70,22 +70,27 @@ export default {
       dataSearch.dob = this.inputTextBirthDate;
 
       const configSearch = {
-        baseURL,
+        baseURL: baseURL,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + this.data.access_token
         }
       };
-      await axios.post('/api03/da/member', dataSearch, configSearch)
-        .then(async response => {
-          this.data_result = await response.data;
-          console.log('data length: ', this.data_result.length)
-          if (this.data_result.length < 0) this.result = 1;
-          console.log('Data', this.data_result);
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-        });
+
+      try {
+        const axiosInstance = axios.create(configSearch); // Create an instance with custom headers
+
+        const response = await axiosInstance.post('/api03/da/member', dataSearch);
+        this.data_result = response.data;
+
+        console.log('data length: ', this.data_result.length);
+        if (this.data_result.length === 0) {
+          this.result = 1;
+        }
+        console.log('Data:', this.data_result);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     }
   },
 }
