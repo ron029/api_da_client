@@ -70,6 +70,7 @@ export default {
       dataSearch.dob = this.inputTextBirthDate;
 
       const configSearch = {
+        baseURL: 'https://api01.hmi.com.ph/',
         headers: {
           "Content-Type": "application/json",
           "Authorization": 'Bearer ' + this.data.access_token
@@ -77,9 +78,8 @@ export default {
       };
 
       try {
-        // const axiosInstance = axios.create(configSearch); // Create an instance with custom headers
 
-        const response = await axios.post('https://api01.hmi.com.ph/api03/da/member', dataSearch, configSearch);
+        const response = await axios.post('/api03/da/member', dataSearch, configSearch);
         this.data_result = response.data;
 
         console.log('data length: ', this.data_result.length);
