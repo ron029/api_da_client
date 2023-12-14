@@ -52,16 +52,17 @@ export default {
     }
   },
   methods: {
-    getToken() {
-      axios.post('/api03/da/generateToken', dataToken, configToken)
-        .then(response => {
-          this.data = response.data;
-          console.log('Data', this.data);
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-        });
-    },
+    async getToken() {
+    try {
+      const response = await axios.post('/api03/da/generateToken', dataToken, configToken);
+      this.data = response.data;
+      console.log('Data:', this.data);
+      return this.data; // Returning the data in case you need to use it elsewhere
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error; // Throwing the error for further handling if needed
+    }
+  },
     async fetchData() {
       this.name = this.inputTextname;
       this.birthDate = this.inputTextBirthDate;
