@@ -78,7 +78,7 @@ export default {
       };
 
       try {
-        const axiosInstance = axios.create({withCredentials: true}); // Create an instance with custom headers
+        const axiosInstance = axios.create(configSearch); // Create an instance with custom headers
 
         const response = await axiosInstance.post('/api03/da/member', dataSearch, configSearch);
         this.data_result = response.data;
