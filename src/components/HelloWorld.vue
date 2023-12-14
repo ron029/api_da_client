@@ -70,6 +70,7 @@ export default {
       dataSearch.dob = this.inputTextBirthDate;
 
       const configSearch = {
+        baseURL,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + this.data.access_token
