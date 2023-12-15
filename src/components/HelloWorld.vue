@@ -86,7 +86,10 @@ export default {
         const instance = axios.create({
           baseURL: 'https://api01.hmi.com.ph',
           timeout: 1000,
-          headers: {'Authorization': 'Bearer '+this.data.access_token}
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer '+this.data.access_token
+          }
         });
         const response = await instance.post('/api03/da/member', dataSearch);
         this.data_result = response.data;
