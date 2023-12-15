@@ -54,7 +54,7 @@ export default {
   methods: {
     async getToken() {
     try {
-      const response = await axios.post('/api/v1/da/generateToken', dataToken, configToken);
+      const response = await axios.post('/api/v1/generateToken', dataToken, configToken);
       this.data = response.data;
       console.log('Data:', this.data);
       return this.data; // Returning the data in case you need to use it elsewhere
@@ -79,7 +79,7 @@ export default {
       };
 
       try {
-        const response = await axios.post('/api/v1/da/member', dataSearch, configSearch);
+        const response = await axios.post('/api/v1/member', dataSearch, configSearch);
         this.data_result = response.data;
 
         console.log('data length: ', this.data_result.length);
