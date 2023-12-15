@@ -24,7 +24,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: '/api03/da', // Use the base URL defined in vue.config.js
+  baseURL: 'https://api01.hmi.com.ph/api03/da', // Use the base URL defined in vue.config.js
   timeout: 1000,
 });
 export default {
@@ -43,7 +43,7 @@ export default {
   methods: {
     async getToken() {
       try {
-        const response = await axios.post('/api03/da/generateToken');
+        const response = await instance.post('/api03/da/generateToken');
         this.token = response.data.access_token;
       } catch (error) {
         console.error('Error fetching token:', error);
