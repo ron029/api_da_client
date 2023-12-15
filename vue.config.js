@@ -8,7 +8,7 @@ module.exports = {
   transpileDependencies: true,
   devServer: {
     proxy: {
-      '/api03/da': {
+      '/api/v1': {
         target: 'https://api01.hmi.com.ph/',
         ws: true,
         changeOrigin: true,
