@@ -34,6 +34,7 @@ const baseURL = 'https://api01.hmi.com.ph';
 const configToken = {
   baseURL,
   headers: {
+    'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/x-www-form-urlencoded'
   }
 };
@@ -79,7 +80,6 @@ export default {
       };
 
       try {
-
         const response = await axios.post('/api03/da/member', dataSearch, configSearch);
         this.data_result = response.data;
 
@@ -89,6 +89,7 @@ export default {
         }
         console.log('Data:', this.data_result);
       } catch (error) {
+        
         console.error('Error fetching data:', error);
       }
     }
