@@ -8,8 +8,8 @@ module.exports = {
   transpileDependencies: true,
   devServer: {
     proxy: {
-      '/onlc': {
-        target: 'http://localhost:8888',
+      '/api03/da': {
+        target: 'https://api01.hmi.com.ph/',
         ws: true,
         changeOrigin: true,
       },

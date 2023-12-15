@@ -75,7 +75,7 @@ export default {
         baseURL: 'https://api01.hmi.com.ph/',
         headers: {
           'Access-Control-Allow-Origin': '*',
-          "Content-Type": "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
           "Authorization": 'Bearer ' + this.data.access_token
         }
       };
