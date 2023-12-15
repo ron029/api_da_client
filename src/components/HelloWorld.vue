@@ -34,8 +34,7 @@ const baseURL = 'https://api01.hmi.com.ph';
 const configToken = {
   baseURL,
   headers: {
-    'Access-Control-Allow-Headers': 'Authorization',
-    'Access-Control-Allow-Origin': '*',
+    
     'Content-Type': 'application/x-www-form-urlencoded'
   }
 };
@@ -75,6 +74,7 @@ export default {
       const configSearch = {
         baseURL: 'https://api01.hmi.com.ph/',
         headers: {
+          'Access-Control-Allow-Origin': '*',
           "Content-Type": "application/json",
           "Authorization": 'Bearer ' + this.data.access_token
         }
