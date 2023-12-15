@@ -30,13 +30,13 @@ const dataSearch = {
   dob: "",
   nric: ""
 }
-// const baseURL = 'https://api01.hmi.com.ph';
-// const configToken = {
-//   baseURL,
-//   headers: {
-//     'Content-Type': 'application/x-www-form-urlencoded'
-//   }
-// };
+const baseURL = 'https://api01.hmi.com.ph';
+const configToken = {
+  baseURL,
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+};
 
 export default {
   name: 'HelloWorld',
@@ -54,7 +54,7 @@ export default {
   methods: {
     async getToken() {
     try {
-      const response = await axios.post('/api03/da/generateToken', dataToken);
+      const response = await axios.post('/api/v1/da/generateToken', dataToken, configToken);
       this.data = response.data;
       console.log('Data:', this.data);
       return this.data; // Returning the data in case you need to use it elsewhere
@@ -70,17 +70,16 @@ export default {
       dataSearch.name = this.inputTextname;
       dataSearch.dob = this.inputTextBirthDate;
 
-      // const configSearch = {
-      //   baseURL: 'https://api01.hmi.com.ph',
-      //   headers: {
-      //     'Access-Control-Allow-Origin': '*',
-      //     "Content-Type": "application/json;charset=UTF-8",
-      //     "Authorization": 'Bearer ' + this.data.access_token
-      //   }
-      // };
+      const configSearch = {
+        baseURL: 'https://api01.hmi.com.ph/',
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": 'Bearer ' + this.data.access_token
+        }
+      };
 
       try {
-        const response = await axios.post('/api/v1/member', dataSearch);
+        const response = await axios.post('/api/v1/da/member', dataSearch, configSearch);
         this.data_result = response.data;
 
         console.log('data length: ', this.data_result.length);
