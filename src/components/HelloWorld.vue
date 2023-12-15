@@ -70,14 +70,14 @@ export default {
       dataSearch.name = this.inputTextname,
       dataSearch.dob = this.inputTextBirthDate
 
-      const headers = {
-        "Content-Type": "application/json",
-        'Authorization': 'Bearer ' + this.data.access_token
-      };
+      // const headers = {
+      //   "Content-Type": "application/json",
+      //   'Authorization': 'Bearer ' + this.data.access_token
+      // };
 
       const requestOptions = {
         method: 'POST',
-        headers: headers,
+        // headers: headers,
         body: JSON.stringify(dataSearch)
       };
 
