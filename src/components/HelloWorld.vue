@@ -23,6 +23,10 @@
 <script>
 import axios from 'axios';
 
+const instance = axios.create({
+  baseURL: '/api03/da', // Use the base URL defined in vue.config.js
+  timeout: 1000,
+});
 export default {
   name: 'HelloWorld',
   data() {
@@ -53,6 +57,7 @@ export default {
           dob: this.inputTextBirthDate,
         };
 
+        /*
         const headers = {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + this.token,
@@ -63,8 +68,9 @@ export default {
           headers: headers,
           body: JSON.stringify(dataSearch),
         };
-
-        const response = await fetch('/api03/da/member', requestOptions);
+        */
+       
+        const response = await instance.post('/member', dataSearch);
         if (!response.ok) {
           if (response.status === 404) {
             throw new Error('No data found');
