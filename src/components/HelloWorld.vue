@@ -12,7 +12,7 @@
     <p v-if="name">Name: {{ name }}</p>
     <p v-if="birthDate">Birthdate: {{ birthDate }}</p>
     <button @click="fetchData">Fetch Data</button>
-    <p v-if="result">Search Result: {{ data_result }}</p>
+    <p v-if="data_result">Search Result: {{ data_result }}</p>
   </div>
 </template>
 
