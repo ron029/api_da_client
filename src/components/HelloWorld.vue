@@ -24,7 +24,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://api01.hmi.com.ph/api03/da', // Use the base URL defined in vue.config.js
+  baseURL: 'https://api01.hmi.com.ph', // Use the base URL defined in vue.config.js
   timeout: 1000,
 });
 export default {
