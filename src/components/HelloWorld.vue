@@ -83,24 +83,29 @@ export default {
 
       const url = 'https://api01.hmi.com.ph/api03/da/member';
       fetch(url, requestOptions)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok.');
-        }
-        return response.json();
-      })
-      .then(data => {
-        this.data_result = data;
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok.');
+          }
+          return response.json();
+        })
+        .then(data => {
+          this.data_result = data;
 
-        console.log('data length:', this.data_result.length);
-        if (this.data_result.length === 0) {
-          this.result = 1;
-        }
-        console.log('Data:', this.data_result);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
+          console.log('data length:', this.data_result.length);
+          if (this.data_result.length === 0) {
+            this.result = 1;
+          }
+          console.log('Data:', this.data_result);
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+          if (error.message === 'No data found') {
+            // Your code to handle the 404 error and show a message to the client
+            // For example:
+            alert('No data found. Please try a different search.');
+          }
+        });
     }
   }
 }
