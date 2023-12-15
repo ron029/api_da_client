@@ -71,13 +71,12 @@ export default {
       dataSearch.dob = this.inputTextBirthDate;
 
       const configSearch = {
-        baseURL: baseURL,
         headers: {
           "Content-Type": "application/json",
           "Authorization": 'Bearer ' + this.data.access_token
         }
       };
-
+      console.log(configSearch);
       try {
         const response = await axios.post('/api03/da/member', dataSearch, configSearch);
         this.data_result = response.data;
