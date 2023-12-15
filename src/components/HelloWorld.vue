@@ -78,7 +78,7 @@ export default {
         }
       };
 
-      axios.post('https://api01.hmi.com.ph/api/v1/member', 
+      await axios.post('https://api01.hmi.com.ph/api/v1/member', 
       dataSearch, 
       configSearch
       // {
