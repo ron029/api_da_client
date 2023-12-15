@@ -53,58 +53,56 @@ export default {
   },
   methods: {
     async getToken() {
-    try {
-      const response = await axios.post('/api03/da/generateToken', dataToken, configToken);
-      this.data = response.data;
-      console.log('Data:', this.data);
-      return this.data; // Returning the data in case you need to use it elsewhere
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      throw error; // Throwing the error for further handling if needed
-    }
-  },
+      try {
+        const response = await axios.post('/api03/da/generateToken', dataToken, configToken);
+        this.data = response.data;
+        console.log('Data:', this.data);
+        return this.data; // Returning the data in case you need to use it elsewhere
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error; // Throwing the error for further handling if needed
+      }
+    },
     async fetchData() {
       this.name = this.inputTextname;
       this.birthDate = this.inputTextBirthDate;
 
-      dataSearch.name = this.inputTextname;
-      dataSearch.dob = this.inputTextBirthDate;
+      dataSearch.name = this.inputTextname,
+      dataSearch.dob = this.inputTextBirthDate
 
-      axios.defaults.baseURL = 'https://api01.hmi.com.ph'
-      axios.defaults.headers.common = {
-        
-        'Authorization': `bearer ${this.data.access_token}`
-      }
-      const configSearch = {
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": 'Bearer ' + this.data.access_token
-        }
+      const headers = {
+        "Content-Type": "application/json",
+        'Authorization': 'Bearer ' + this.data.access_token
       };
-      console.log(configSearch);
-      try {
-        const instance = axios.create({
-          baseURL: 'https://api01.hmi.com.ph',
-          timeout: 1000,
-          headers: {
-            "Content-Type": "application/json",
-            'Authorization': 'Bearer '+this.data.access_token
-          }
-        });
-        const response = await instance.post('/api03/da/member', dataSearch);
-        this.data_result = response.data;
 
-        console.log('data length: ', this.data_result.length);
+      const requestOptions = {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(dataSearch)
+      };
+
+      const url = 'https://api01.hmi.com.ph/api03/da/member';
+      fetch(url, requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok.');
+        }
+        return response.json();
+      })
+      .then(data => {
+        this.data_result = data;
+
+        console.log('data length:', this.data_result.length);
         if (this.data_result.length === 0) {
           this.result = 1;
         }
         console.log('Data:', this.data_result);
-      } catch (error) {
-        
+      })
+      .catch(error => {
         console.error('Error fetching data:', error);
-      }
+      });
     }
-  },
+  }
 }
 </script>
 
