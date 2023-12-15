@@ -30,6 +30,7 @@ const dataSearch = {
   dob: "",
   nric: ""
 }
+
 const baseURL = 'https://api01.hmi.com.ph';
 const configToken = {
   baseURL: baseURL,
@@ -70,6 +71,7 @@ export default {
       dataSearch.name = this.inputTextname;
       dataSearch.dob = this.inputTextBirthDate;
 
+      /*
       const configSearch = {
         baseURL: baseURL,
         headers: {
@@ -77,20 +79,29 @@ export default {
           "Authorization": 'Bearer ' + this.data.access_token
         }
       };
+      */
 
-      try {
-        const response = await axios.post('/api/v1/member', dataSearch, configSearch);
-        this.data_result = response.data;
-
-        console.log('data length: ', this.data_result.length);
-        if (this.data_result.length === 0) {
-          this.result = 1;
+      fetch('https://api01.hmi.com.ph/api/v1/member', {
+        method: 'POST',
+        // Add your headers and body as needed
+      })
+      .then(response => {
+        if (response.ok) {
+          // Handle successful response (status 200-299)
+          return response.json(); // Process the data
+        } else if (response.status === 404) {
+          // Handle 404 specifically for no results found
+          // Maybe display a message to the user indicating no matching records were found
+          console.log('No matching records found');
+        } else {
+          // Handle other error scenarios
+          throw new Error('Error: ' + response.status);
         }
-        console.log('Data:', this.data_result);
-      } catch (error) {
-        
-        console.error('Error fetching data:', error);
-      }
+      })
+      .catch(error => {
+        // Handle network errors or other exceptions here
+        console.error('Fetch Error:', error);
+      });
     }
   },
 }
