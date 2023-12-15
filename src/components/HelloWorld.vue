@@ -32,7 +32,7 @@ const dataSearch = {
 }
 const baseURL = 'https://api01.hmi.com.ph';
 const configToken = {
-  baseURL,
+  baseURL: baseURL,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
@@ -71,7 +71,7 @@ export default {
       dataSearch.dob = this.inputTextBirthDate;
 
       const configSearch = {
-        baseURL: 'https://api01.hmi.com.ph/',
+        baseURL: baseURL,
         headers: {
           "Content-Type": "application/json",
           "Authorization": 'Bearer ' + this.data.access_token
