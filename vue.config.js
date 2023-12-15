@@ -12,6 +12,12 @@ module.exports = {
         target: 'https://api01.hmi.com.ph/',
         ws: true,
         changeOrigin: true,
+        https: true,
+        hotOnly: false,
+        disableHostCheck: true,
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        }
       },
     },
   },
