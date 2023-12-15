@@ -12,7 +12,7 @@
     <p v-if="name">Name: {{ name }}</p>
     <p v-if="birthDate">Birthdate: {{ birthDate }}</p>
     <button @click="fetchData">Fetch Data</button>
-    <p v-if="data_result">Search Result: {{ data_result }}</p>
+    <p v-if="result">Search Result: {{ data_result }}</p>
   </div>
 </template>
 
@@ -30,7 +30,6 @@ const dataSearch = {
   dob: "",
   nric: ""
 }
-
 const baseURL = 'https://api01.hmi.com.ph';
 const configToken = {
   baseURL: baseURL,
@@ -71,7 +70,6 @@ export default {
       dataSearch.name = this.inputTextname;
       dataSearch.dob = this.inputTextBirthDate;
 
-      /*
       const configSearch = {
         baseURL: baseURL,
         headers: {
@@ -79,28 +77,23 @@ export default {
           "Authorization": 'Bearer ' + this.data.access_token
         }
       };
-      */
 
-      fetch('https://api01.hmi.com.ph/api/v1/member', {
-        method: 'POST',
-        // Add your headers and body as needed
-      })
+      axios.post('https://api01.hmi.com.ph/api/v1/member', {
+        // Your request data
+      }, 
+      configSearch
+      // {
+      //   crossDomain: true,
+      //   withCredentials: true
+      // }
+      )
       .then(response => {
-        if (response.ok) {
-          // Handle successful response (status 200-299)
-          return response.json(); // Process the data
-        } else if (response.status === 404) {
-          // Handle 404 specifically for no results found
-          // Maybe display a message to the user indicating no matching records were found
-          console.log('No matching records found');
-        } else {
-          // Handle other error scenarios
-          throw new Error('Error: ' + response.status);
-        }
+        console.log('response: ', response)
+        // Handle the response data
       })
       .catch(error => {
-        // Handle network errors or other exceptions here
-        console.error('Fetch Error:', error);
+        // Handle errors
+        console.error('Error:', error);
       });
     }
   },
