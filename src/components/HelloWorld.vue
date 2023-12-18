@@ -74,14 +74,15 @@ export default {
         'Authorization': 'Bearer ' + this.data.access_token
       };
 
+      const url = 'https://api01.hmi.com.ph/api03/da/member';
       const requestOptions = {
+        url: url,
         method: 'POST',
         headers: headers,
-        body: JSON.stringify(dataSearch)
+        data: JSON.stringify(dataSearch)
       };
       console.log('requestOptions: ', requestOptions);
-      const url = 'https://api01.hmi.com.ph/api03/da/member';
-      await axios.post(url, requestOptions)
+      await axios.post(requestOptions)
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok.');
