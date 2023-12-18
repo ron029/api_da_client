@@ -73,7 +73,8 @@ export default {
         headers:  {
           'Accept': 'application/json',
           'Content-Type': 'application/json;charset=UTF-8',
-          'Authorization': 'Bearer ' + this.data.access_token
+          'Authorization': 'Bearer ' + this.data.access_token,
+          'Access-Control-Allow-Origin': '*'
         }
       };
       const url = 'https://api01.hmi.com.ph/api03/da/member';
