@@ -75,7 +75,9 @@ export default {
           'Content-Type': 'application/json;charset=UTF-8',
           'Authorization': 'Bearer ' + this.data.access_token
         },
-        validateStatus: false
+        validateStatus: function (status) {
+          return status < 200; // Resolve only if the status code is less than 500
+        }
       };
       const url = 'https://api01.hmi.com.ph/api03/da/member';
       await axios.post(url, dataSearch, axiosConfig)
