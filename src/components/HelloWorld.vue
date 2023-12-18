@@ -44,8 +44,8 @@ export default {
       data: '',
       name: '',
       birthDate: '',
-      inputTextname: 'John Doe',
-      inputTextBirthDate: '1990-05-15',
+      inputTextname: 'josefina rufino',
+      inputTextBirthDate: '',
       data_result: '',
       result: 0,
     }
@@ -92,6 +92,11 @@ export default {
         })
         .catch(error => {
           console.error('Error fetching data:', error);
+          if (error.response.status === 404) {
+              console.log('Resource could not be found!');
+          } else {
+              console.log(error.message);
+          }
           if (error.message === 'No data found') {
             // Your code to handle the 404 error and show a message to the client
             // For example:
