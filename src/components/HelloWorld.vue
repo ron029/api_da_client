@@ -90,9 +90,6 @@ export default {
         })
         .catch(error => {
           console.error('Error fetching data:', error);
-          console.error(error.response.data);    // ***
-          console.error(error.response.status);  // ***
-          console.error(error.response.headers);
           if (error.message === 'No data found') {
             // Your code to handle the 404 error and show a message to the client
             // For example:
