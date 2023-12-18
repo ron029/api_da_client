@@ -79,7 +79,7 @@ export default {
         headers: headers,
         body: JSON.stringify(dataSearch)
       };
-      console.lgo('requestOptions: ', requestOptions);
+      console.log('requestOptions: ', requestOptions);
       const url = 'https://api01.hmi.com.ph/api03/da/member';
       await axios.post(url, requestOptions)
         .then(response => {
