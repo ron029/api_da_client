@@ -69,16 +69,17 @@ export default {
       dataSearch.name = this.inputTextname,
       dataSearch.dob = this.inputTextBirthDate
 
-      const headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json;charset=UTF-8',
-        'Authorization': 'Bearer ' + this.data.access_token
+      const method = "POST";
+      const config = {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this.data}`,
+        },
+        body: JSON.stringify(dataSearch)
       };
-
       const url = 'https://api01.hmi.com.ph/api03/da/member';
-      await axios.post(url, JSON.stringify(dataSearch), {
-          headers: headers
-        })
+      await axios.post(url, config)
         .then(data => {
           this.data_result = data;
 
