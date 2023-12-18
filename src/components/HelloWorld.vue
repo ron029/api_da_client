@@ -76,7 +76,7 @@ export default {
           'Authorization': 'Bearer ' + this.data.access_token
         },
         validateStatus: function (status) {
-          return status < 200; // Resolve only if the status code is less than 500
+          return status >= 200 && status < 400
         }
       };
       const url = 'https://api01.hmi.com.ph/api03/da/member';
