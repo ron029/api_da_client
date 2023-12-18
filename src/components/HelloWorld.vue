@@ -32,7 +32,6 @@ const dataSearch = {
 }
 const baseURL = 'https://api01.hmi.com.ph';
 const configToken = {
-  baseURL: baseURL,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
@@ -54,7 +53,7 @@ export default {
   methods: {
     async getToken() {
       try {
-        const response = await axios.post('/api03/da/generateToken', dataToken, configToken);
+        const response = await axios.post(baseURL + '/api03/da/generateToken', dataToken, configToken);
         this.data = response.data;
         console.log('Data:', this.data);
         return this.data; // Returning the data in case you need to use it elsewhere
