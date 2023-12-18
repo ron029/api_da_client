@@ -80,7 +80,7 @@ export default {
         }
       };
       const url = 'https://api01.hmi.com.ph/api03/da/member';
-      await axios.post(url, dataSearch, axiosConfig)
+      await axios.create({withCredentials: false}).post(url, dataSearch, axiosConfig)
         .then(data => {
           this.data_result = data;
 
@@ -91,8 +91,9 @@ export default {
           console.log('Data:', this.data_result);
         })
         .catch(error => {
-          console.error('Error fetching data:', error);
+          
           if (error.message === "AxiosError") {
+            console.error('Error fetching data:', error);
             console.log('internal error')
           }
         });
