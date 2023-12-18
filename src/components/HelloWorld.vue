@@ -75,12 +75,8 @@ export default {
         'Authorization': 'Bearer ' + this.data.access_token
       };
       const url = 'https://api01.hmi.com.ph/api03/da/member';
-      const options = {
-        method: 'POST',
-        headers: headers,
-        data: JSON.stringify(dataSearch)
-      }
-      await axios.post(url, options)
+      const data = JSON.stringify(dataSearch) 
+      await axios.post(url, data, {headers})
         .then(data => {
           this.data_result = data;
 
