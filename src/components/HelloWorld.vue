@@ -76,12 +76,11 @@ export default {
       };
       const url = 'https://api01.hmi.com.ph/api03/da/member';
       const options = {
-        url: url,
         method: 'POST',
         headers: headers,
         data: JSON.stringify(dataSearch)
       }
-      await axios.post(options)
+      await axios.post(url, options)
         .then(data => {
           this.data_result = data;
 
