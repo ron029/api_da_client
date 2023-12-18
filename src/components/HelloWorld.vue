@@ -77,7 +77,6 @@ export default {
         }
       };
       const url = 'https://api01.hmi.com.ph/api03/da/member';
-      // const data = JSON.stringify(dataSearch) 
       await axios.post(url, dataSearch, axiosConfig)
         .then(data => {
           this.data_result = data;
@@ -90,6 +89,9 @@ export default {
         })
         .catch(error => {
           console.error('Error fetching data:', error);
+          console.error(error.response.data);    // ***
+          console.error(error.response.status);  // ***
+          console.error(error.response.headers);
           if (error.message === 'No data found') {
             // Your code to handle the 404 error and show a message to the client
             // For example:
