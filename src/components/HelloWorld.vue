@@ -82,7 +82,7 @@ export default {
         data: JSON.stringify(dataSearch)
       };
       console.log('requestOptions: ', requestOptions);
-      await axios.post(url, JSON.stringify(dataSearch), {
+      await axios.post(url, dataSearch, {
           headers: headers
         })
         .then(data => {
