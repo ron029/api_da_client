@@ -82,12 +82,8 @@ export default {
         data: JSON.stringify(dataSearch)
       };
       console.log('requestOptions: ', requestOptions);
-      await axios.post(requestOptions)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok.');
-          }
-          return response.json();
+      await axios.post(url, JSON.stringify(dataSearch), {
+          headers: headers
         })
         .then(data => {
           this.data_result = data;
