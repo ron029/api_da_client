@@ -74,12 +74,14 @@ export default {
         'Content-Type': 'application/json;charset=UTF-8',
         'Authorization': 'Bearer ' + this.data.access_token
       };
-      console.log('data: ', JSON.stringify(dataSearch))
-      console.log('data: ', dataSearch)
       const url = 'https://api01.hmi.com.ph/api03/da/member';
-      await axios.post(url, JSON.stringify(dataSearch), {
-          headers: headers
-        })
+      const options = {
+        url: url,
+        method: 'POST',
+        headers: headers,
+        data: JSON.stringify(dataSearch)
+      }
+      await axios.post(options)
         .then(data => {
           this.data_result = data;
 
