@@ -69,19 +69,19 @@ export default {
       dataSearch.name = this.inputTextname,
       dataSearch.dob = this.inputTextBirthDate
 
-      // const headers = {
-      //   "Content-Type": "application/json",
-      //   'Authorization': 'Bearer ' + this.data.access_token
-      // };
+      const headers = {
+        "Content-Type": "application/json",
+        'Authorization': 'Bearer ' + this.data.access_token
+      };
 
-      // const requestOptions = {
-      //   method: 'POST',
-      //   // headers: headers,
-      //   body: JSON.stringify(dataSearch)
-      // };
+      const requestOptions = {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(dataSearch)
+      };
 
       const url = 'https://api01.hmi.com.ph/api03/da/member';
-      await axios.post(url, dataSearch, configToken)
+      await axios.post(url, requestOptions)
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok.');
