@@ -26,11 +26,19 @@
 module.exports = {
   devServer: {
     proxy: {
-      '/api': {
+      '/api03/da': {
         target: 'https://api01.hmi.com.ph',
         changeOrigin: true,
+        secure: true,
         pathRewrite: {
-          '^/api': '', // Remove /api from the request path
+          '^/api03/da': '', // Remove /api03/da from the request path
+        },
+        onError: (err, req, res) => {
+          console.error('Proxy Error:', err);
+          res.writeHead(502, {
+            'Content-Type': 'text/plain',
+          });
+          res.end('Bad Gateway asdf');
         },
       },
     },
