@@ -73,7 +73,7 @@ export default {
         headers:  {
           'Accept': 'application/json',
           'Content-Type': 'application/json;charset=UTF-8',
-          'Authorization': 'Bearer ' + this.data.access_token
+          'Authorization': 'Bearer ' + this.data.access_token + 'asdf'
         },
         validateStatus: function (status) {
           return status >= 200 && status < 400
