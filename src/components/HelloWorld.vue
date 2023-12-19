@@ -53,7 +53,7 @@ export default {
   methods: {
     async getToken() {
       try {
-        const response = await axios.get(baseURL + '/api03/da/generateToken', dataToken, configToken);
+        const response = await axios.post(baseURL + '/api03/da/generateToken', dataToken, configToken);
         this.data = response.data;
         console.log('Data:', this.data);
         return this.data; // Returning the data in case you need to use it elsewhere
