@@ -30,7 +30,7 @@ const dataSearch = {
   dob: "",
   nric: ""
 }
-const baseURL = 'https://api01.hmi.com.ph';
+const baseURL = 'https://i-scan.hmi.com.ph';
 const configToken = {
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded'
@@ -79,7 +79,7 @@ export default {
           return status >= 200 && status < 400
         }
       };
-      const url = 'https://api01.hmi.com.ph/api03/da/member';
+      const url = 'https://i-scan.hmi.com.ph/api03/da/member';
       await axios.create({withCredentials: false}).post(url, dataSearch, axiosConfig)
         .then(data => {
           this.data_result = data;
@@ -91,7 +91,6 @@ export default {
           console.log('Data:', this.data_result);
         })
         .catch(error => {
-          
           // Handle the error here
           if (error.response) {
             // The request was made and the server responded with a status code
