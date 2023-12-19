@@ -80,7 +80,7 @@ export default {
         }
       };
       const url = 'https://i-scan.hmi.com.ph/api03/da/member';
-      await axios.create({withCredentials: false}).post(url, dataSearch, axiosConfig)
+      await axios.post(url, dataSearch, axiosConfig)
         .then(data => {
           this.data_result = data;
           if (this.data_result.length === 0) {
