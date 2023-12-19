@@ -83,8 +83,6 @@ export default {
       await axios.create({withCredentials: false}).post(url, dataSearch, axiosConfig)
         .then(data => {
           this.data_result = data;
-
-          console.log('data length:', this.data_result.length);
           if (this.data_result.length === 0) {
             this.result = 1;
           }
